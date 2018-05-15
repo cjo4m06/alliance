@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Auth;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -15,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::defaultView('pagination::view');
+        Paginator::defaultSimpleView('pagination::view');
     }
 
     /**

@@ -77,4 +77,9 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'web.roles.delete',
         'uses' => 'RoleController@delete',
     ]);
+
+    Route::get('items', [
+        'as' => 'web.items',
+        'uses' => 'ItemController@index',
+    ]);
 });

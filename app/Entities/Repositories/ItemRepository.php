@@ -25,4 +25,9 @@ class ItemRepository extends Repository
 
         return $paginate ? $query->paginate(10) : $query->get();
     }
+
+    public function createItem($data)
+    {
+        return $this->model->create($data);
+    }
 }

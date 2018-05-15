@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Repositories\ItemRepository;
+use App\Http\Requests\ItemRequest;
+use Auth;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -23,5 +25,12 @@ class ItemController extends Controller
         $items = $this->itemRepository->getItems($keywords);
 
         return view('web.item', compact('items', 'keywords'));
+    }
+
+    public function store(ItemRequest $request)
+    {
+        $this->itemRepository->createItem($request->all());
+
+        return back()->with('success', '建立物品成功。');
     }
 }

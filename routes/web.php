@@ -82,4 +82,9 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'web.items',
         'uses' => 'ItemController@index',
     ]);
+
+    Route::post('items', [
+        'as' => 'web.items.store',
+        'uses' => 'ItemController@store',
+    ]);
 });

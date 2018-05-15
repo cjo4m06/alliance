@@ -29,6 +29,35 @@
                     bottom: 0;
                     width: 100%;
                 }
+                .mobile-view {
+                    display: none;
+                }
+                @media only screen and (max-width: 700px) {
+                    .pc-view {
+                        display: none !important;
+                    }
+                    .secondary.pointing.menu .item,
+                    .secondary.pointing.menu .menu {
+                        display: none;
+                    }
+                    .secondary.pointing.menu .toc.item {
+                        display: block;
+                    }
+                    .mobile-view {
+                        display: block;
+                    }
+                    .masthead.segment {
+                        min-height: 350px;
+                    }
+                    .masthead h1.ui.header {
+                        font-size: 2em;
+                        margin-top: 1.5em;
+                    }
+                    .masthead h2 {
+                        margin-top: 0.5em;
+                        font-size: 1.5em;
+                    }
+                }
             </style>
         @show
         <title>Alliance</title>
@@ -36,11 +65,12 @@
     </head>
     <body>
         @include('partials.manage.menu')
-        <div class="ui main text container">
-            @include('partials.messages.all')
-            @yield('content')
+        <div class="pusher">
+            <div class="ui main masthead text container">
+                @include('partials.messages.all')
+                @yield('content')
+            </div>
         </div>
-
         @include('partials.manage.footer')
     </body>
     @section('js')
@@ -48,5 +78,22 @@
                 integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
                 crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.masthead').visibility({
+                    once: false,
+                    onBottomPassed: function() {
+                        $('.fixed.menu').transition('fade in');
+                    },
+                    onBottomPassedReverse: function() {
+                        $('.fixed.menu').transition('fade out');
+                    }
+                });
+
+                // create sidebar and attach to menu open
+                $('.ui.sidebar').sidebar('attach events', '.toc.item');
+            })
+            ;
+        </script>
     @show
 </html>

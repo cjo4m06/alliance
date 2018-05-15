@@ -69,15 +69,7 @@
                         <div class="one wide column">
                             <i class="dropdown icon"></i>
                         </div>
-                        <div class="two wide column">
-                            Lv：{{ $role->level }}
-                        </div>
-                        <div class="four wide column">
-                            {{ $role->name }}（{{ App\Entities\Role::JOBS[$role->job] }}）
-                        </div>
-                        <div class="six wide column">
-                            防禦：{{ $role->ac }} 傷害：{{ $role->attack }} 命中：{{ $role->hit }}
-                        </div>
+                        Lv：{{ $role->level }} {{ $role->name }}（{{ App\Entities\Role::JOBS[$role->job] }}）
                     </div>
                 </div>
                 <div class="ui form content">

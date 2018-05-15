@@ -79,6 +79,26 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'web.roles.delete',
         'uses' => 'RoleController@delete',
     ]);
+
+    Route::get('auctions', [
+        'as' => 'web.auctions.index',
+        'uses' => 'AuctionController@index'
+    ]);
+
+    Route::get('bosses', [
+        'as' => 'web.bosses.index',
+        'uses' => 'BossController@index',
+    ]);
+
+    Route::get('loots', [
+        'as' => 'web.loots.index',
+        'uses' => 'LootController@index',
+    ]);
+
+    Route::get('reports', [
+        'as' => 'web.reports.index',
+        'uses' => 'ReportController@index',
+    ]);
 });
 
 Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function () {

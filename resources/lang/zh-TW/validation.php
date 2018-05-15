@@ -140,18 +140,11 @@ return [
         'title'                 => '標題',
         'username'              => '使用者名字',
         'year'                  => '年',
-        'guild_id'                 => '血盟',
-
-        'account'               => '帳號',
-        'latitude'              => '緯度',
-        'longitude'             => '經度',
-
-        'topic_id'              => '主題 ID',
-        'vat'                   => '統一編號',
-        'db_path'               => '資料庫位置',
-        'file_path'             => '檔案夾位置',
-        'stamp_width'           => '戳章寬度',
-        'tally_width'           => '騎縫章寬度',
+        'guild_id'              => '血盟',
+        'attack'                => '傷害 or 魔攻',
+        'ac'                    => '防禦',
+        'level'                 => '等級',
+        'hit'                   => '命中',
     ],
 
 ];

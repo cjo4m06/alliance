@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('web.login');
+    return redirect()->route('web.user');
 })->name('web.index');
 
 Route::group(['middleware' => 'guest'], function () {
@@ -56,5 +56,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('user/{user}', [
         'as' => 'web.user.update',
         'uses' => 'UserController@update',
+    ]);
+
+    Route::get('roles', [
+        'as' => 'web.roles',
+        'uses' => 'RoleController@index',
+    ]);
+
+    Route::post('roles', [
+        'as' => 'web.roles.store',
+        'uses' => 'RoleController@store',
     ]);
 });

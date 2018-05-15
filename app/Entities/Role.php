@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     protected $fillable = [
-        'user_id', 'job', 'level', 'attack', 'hit', 'ac'
+        'user_id', 'job', 'level', 'attack', 'hit', 'ac', 'name'
     ];
 
     const ROYAL = 'royal';
     const KNIGHT = 'knight';
     const ELF = 'elf';
     const WIZARD = 'wizard';
-    
+
     const JOBS = [
         self::ROYAL => '王族',
         self::KNIGHT => '騎士',

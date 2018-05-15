@@ -1,10 +1,10 @@
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a href="#" class="header item">
+        <a href="{!! route('web.index') !!}" class="header item">
             <img class="logo" src="img/logo.png">
             Alliance
         </a>
-        <a href="#" class="item">角色</a>
+        <a href="{!! route('web.roles') !!}" class="item">角色</a>
         <a href="#" class="item">拍賣會</a>
         <a href="#" class="item">物品</a>
         <a href="#" class="item">分贓</a>

@@ -53,7 +53,7 @@ class AuthController extends Controller
         $attempt['is_active'] = true;
 
         if (Auth::attempt($attempt, $request->has('remember'))) {
-            return redirect()->route('web.user');
+            return redirect()->route('web.index');
         }
 
         $message = '帳號或密碼錯誤';

@@ -49,13 +49,19 @@ class AuthController extends Controller
     public function authenticate(AuthenticateRequest $request)
     {
         $attempt = $request->only('account', 'password');
+        $account = Auth::once($attempt);
         $attempt['is_active'] = true;
 
         if (Auth::attempt($attempt, $request->has('remember'))) {
-            return 'OK';
+            return redirect()->route('web.user');
         }
 
-        return back()->withInput()->withErrors('帳號或密碼錯誤');
+        $message = '帳號或密碼錯誤';
+        if ($account) {
+            $message = '帳號未開通，請找幹部開通！';
+        }
+
+        return back()->withInput()->withErrors($message);
     }
 
     public function logout()

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return 'OK';
+    return redirect()->route('web.login');
 })->name('web.index');
 
 Route::group(['middleware' => 'guest'], function () {
@@ -41,5 +41,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [
         'as' => 'web.logout',
         'uses' => 'AuthController@logout',
+    ]);
+
+    Route::put('user/{user}/password', [
+        'as' => 'web.user.password',
+        'uses' => 'UserController@password'
+    ]);
+
+    Route::get('user', [
+        'as' => 'web.user',
+        'uses' => 'UserController@index',
+    ]);
+
+    Route::put('user/{user}', [
+        'as' => 'web.user.update',
+        'uses' => 'UserController@update',
     ]);
 });

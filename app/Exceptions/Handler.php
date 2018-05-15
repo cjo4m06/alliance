@@ -61,6 +61,6 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return redirect()->guest(route('web.index'));
+        return redirect()->guest(route('web.login'));
     }
 }

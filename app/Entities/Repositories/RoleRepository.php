@@ -25,4 +25,18 @@ class RoleRepository extends Repository
     {
         return $this->model->create($data);
     }
+
+    public function deleteRole($roleId)
+    {
+        $query = $this->model->newQuery();
+
+        $query->where('id', $roleId);
+
+        return $query->delete();
+    }
+
+    public function findRole($roleId)
+    {
+        return $this->model->find($roleId);
+    }
 }

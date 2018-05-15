@@ -67,4 +67,14 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'web.roles.store',
         'uses' => 'RoleController@store',
     ]);
+
+    Route::put('roles/{role}', [
+        'as' => 'web.roles.update',
+        'uses' => 'RoleController@update',
+    ]);
+
+    Route::delete('roles', [
+        'as' => 'web.roles.delete',
+        'uses' => 'RoleController@delete',
+    ]);
 });

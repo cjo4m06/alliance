@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Middleware\PermissionMiddleware;
+
 Route::get('/', function () {
     return redirect()->route('web.user');
 })->name('web.index');
@@ -77,7 +79,9 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'web.roles.delete',
         'uses' => 'RoleController@delete',
     ]);
+});
 
+Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function () {
     Route::get('items', [
         'as' => 'web.items',
         'uses' => 'ItemController@index',

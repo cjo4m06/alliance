@@ -38,21 +38,53 @@
                 <th colspan="3">物品列</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="ui form">
             @foreach($items as $item)
-                <tr>
-                    <td class="collapsing">
-                        {{ $item->name }}
-                    </td>
-                    <td>
-                        起標價 {{ $item->price }}
-                        <br>
-                        一標最低價 {{ $item->once_price }}
-                    </td>
-                    <td class="right aligned collapsing">
-                        <button class="ui mini orange button">編輯</button>
-                    </td>
-                </tr>
+                <form action="{!! route('web.items.update', $item) !!}" method="post">
+                    {!! method_field('put') !!}
+                    {!! csrf_field() !!}
+                    <tr>
+                        <td>
+                            <div class="read-status">
+                                <span>{{ $item->name }}</span>
+                            </div>
+                            <div class="edit-status" style="display: none;">
+                                <div class="field">
+                                    <label for="name">物品名稱</label>
+                                    <input type="text" name="name" id="name" value="{{ $item->name }}" required>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="read-status">
+                                起標價格 {{ $item->price }}
+                                <br>
+                                一標最低價 {{ $item->once_price }}
+                            </div>
+                            <div class="edit-status" style="display: none;">
+                                <div class="field">
+                                    <label for="price">起標價格</label>
+                                    <input type="number" name="price" id="price" value="{{ $item->price }}" required>
+                                </div>
+                                <div class="field">
+                                    <label for="once_price">一標最低價</label>
+                                    <input type="number" name="once_price" id="once_price" value="{{ $item->once_price }}" required>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="right aligned collapsing">
+                            <div class="read-status">
+                                <button id="edit-item-btn" type="button" class="ui mini orange button">編輯</button>
+                            </div>
+                            <div class="edit-status" style="display: none;">
+                                <button id="save-item-btn" class="ui mini blue button">更新</button>
+                                <br>
+                                <br>
+                                <button id="cancel-item-btn" type="button" class="ui mini red button">取消</button>
+                            </div>
+                        </td>
+                    </tr>
+                </form>
             @endforeach
         </tbody>
     </table>
@@ -67,5 +99,14 @@
     @parent
     <script>
         $('.ui.accordion').accordion();
+        $(document).on('click', '#edit-item-btn', function (event) {
+            $(event.target).parents('tr').find('.read-status').hide();
+            $(event.target).parents('tr').find('.edit-status').show();
+        });
+
+        $(document).on('click', '#cancel-item-btn', function (event) {
+            $(event.target).parents('tr').find('.read-status').show();
+            $(event.target).parents('tr').find('.edit-status').hide();
+        });
     </script>
 @endsection

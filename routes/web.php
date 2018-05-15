@@ -14,7 +14,7 @@
 use App\Http\Middleware\PermissionMiddleware;
 
 Route::get('/', function () {
-    return redirect()->route('web.user');
+    return redirect()->route('web.roles');
 })->name('web.index');
 
 Route::group(['middleware' => 'guest'], function () {
@@ -90,5 +90,10 @@ Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function (
     Route::post('items', [
         'as' => 'web.items.store',
         'uses' => 'ItemController@store',
+    ]);
+
+    Route::put('items/{item}', [
+        'as' => 'web.items.update',
+        'uses' => 'ItemController@update',
     ]);
 });

@@ -57,4 +57,11 @@ class AuthController extends Controller
 
         return back()->withInput()->withErrors('帳號或密碼錯誤');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
 }

@@ -36,3 +36,10 @@ Route::group(['middleware' => 'guest'], function () {
         'uses' => 'AuthController@authenticate',
     ]);
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('logout', [
+        'as' => 'web.logout',
+        'uses' => 'AuthController@logout',
+    ]);
+});

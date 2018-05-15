@@ -8,12 +8,13 @@
         <a href="{!! route('web.auctions.index') !!}" class="item">拍賣會</a>
         <a href="{!! route('web.loots.index') !!}" class="item">分贓</a>
         <a href="{!! route('web.bosses.index') !!}" class="item">王團</a>
+        <a href="{!! route('web.items') !!}" class="item">物品</a>
         @if(Auth::user()->is_manager)
-            <a href="{!! route('web.items') !!}" class="item">物品</a>
+
         @endif
         <a href="{!! route('web.reports.index') !!}" class="item">回報</a>
         <div class="ui simple dropdown right item">
-            Hi, {{ $currentUser->name or 'Guest' }} <i class="dorpdown icon"></i>
+            Hi, {{ $currentUser->name or 'Guest' }} <i class="dropdown icon"></i>
             <div class="menu">
                 <a href="{!! route('web.user') !!}" class="item">帳號</a>
                 <div class="divider"></div>

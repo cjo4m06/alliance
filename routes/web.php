@@ -99,14 +99,14 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'web.reports.index',
         'uses' => 'ReportController@index',
     ]);
-});
 
-Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function () {
     Route::get('items', [
         'as' => 'web.items',
         'uses' => 'ItemController@index',
     ]);
+});
 
+Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function () {
     Route::post('items', [
         'as' => 'web.items.store',
         'uses' => 'ItemController@store',

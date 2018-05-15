@@ -1,30 +1,32 @@
 @extends('layout')
 
 @section('content')
-    <div class="ui styled fluid accordion">
-        <div class="title">
-            <i class="dropdown icon"></i> 新增物品
+    @if(Auth::user()->is_manager)
+        <div class="ui styled fluid accordion">
+            <div class="title">
+                <i class="dropdown icon"></i> 新增物品
+            </div>
+            <div class="ui form content">
+                <form action="{!! route('web.items.store') !!}" method="post">
+                    {!! csrf_field() !!}
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <input type="text" name="name" placeholder="物品名稱">
+                        </div>
+                        <div class="three wide field">
+                            <input type="number" name="price" placeholder="起標價">
+                        </div>
+                        <div class="three wide field">
+                            <input type="number" name="once_price" placeholder="一標最低價">
+                        </div>
+                        <div class="two wide field">
+                            <button class="ui mini blue button">新增</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="ui form content">
-            <form action="{!! route('web.items.store') !!}" method="post">
-                {!! csrf_field() !!}
-                <div class="inline fields">
-                    <div class="eight wide field">
-                        <input type="text" name="name" placeholder="物品名稱">
-                    </div>
-                    <div class="three wide field">
-                        <input type="number" name="price" placeholder="起標價">
-                    </div>
-                    <div class="three wide field">
-                        <input type="number" name="once_price" placeholder="一標最低價">
-                    </div>
-                    <div class="two wide field">
-                        <button class="ui mini blue button">新增</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    @endif
     <br>
     <form action="{!! route('web.items') !!}">
         <div class="ui icon input">
@@ -72,17 +74,19 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="right aligned collapsing">
-                            <div class="read-status">
-                                <button id="edit-item-btn" type="button" class="ui mini orange button">編輯</button>
-                            </div>
-                            <div class="edit-status" style="display: none;">
-                                <button id="save-item-btn" class="ui mini blue button">更新</button>
-                                <br>
-                                <br>
-                                <button id="cancel-item-btn" type="button" class="ui mini red button">取消</button>
-                            </div>
-                        </td>
+                        @if(Auth::user()->is_manager)
+                            <td class="right aligned collapsing">
+                                <div class="read-status">
+                                    <button id="edit-item-btn" type="button" class="ui mini orange button">編輯</button>
+                                </div>
+                                <div class="edit-status" style="display: none;">
+                                    <button id="save-item-btn" class="ui mini blue button">更新</button>
+                                    <br>
+                                    <br>
+                                    <button id="cancel-item-btn" type="button" class="ui mini red button">取消</button>
+                                </div>
+                            </td>
+                        @endif
                     </tr>
                 </form>
             @endforeach

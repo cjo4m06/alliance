@@ -17,7 +17,7 @@ class UserRepository extends Repository
         return $this->model->create($data);
     }
 
-    public function getMember($keywords, $paginate = true)
+    public function getMember($keywords = null, $paginate = true)
     {
         $query = $this->model->newQuery();
 
@@ -38,6 +38,24 @@ class UserRepository extends Repository
         }
 
         $query->orderByDesc('is_manager');
+
+        return $paginate ? $query->paginate(10) : $query->get();
+    }
+
+    public function getNotActiveUsers($keywords = null, $paginate = true)
+    {
+        $query = $this->model->newQuery();
+
+        $query->where('is_active', false);
+
+        if ($keywords) {
+            $keywords = explode(' ', $keywords);
+            foreach ($keywords as $keyword) {
+                $query->where('users.name', 'like', "%{$keyword}%");
+            }
+        }
+
+        $query->orderByDesc('id');
 
         return $paginate ? $query->paginate(10) : $query->get();
     }

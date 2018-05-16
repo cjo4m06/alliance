@@ -131,4 +131,19 @@ Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function (
         'as' => 'web.users.manage.enable',
         'uses' => 'UserController@enableManage',
     ]);
+
+    Route::get('users/active', [
+        'as' => 'web.users.active',
+        'uses' => 'UserController@active',
+    ]);
+
+    Route::put('users/active/{user}/ok', [
+        'as' => 'web.users.active.ok',
+        'uses' => 'UserController@activeOK',
+    ]);
+
+    Route::put('users/active/{user}/no', [
+        'as' => 'web.users.active.no',
+        'uses' => 'UserController@activeNO',
+    ]);
 });

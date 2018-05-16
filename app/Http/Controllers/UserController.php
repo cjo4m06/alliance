@@ -49,8 +49,9 @@ class UserController extends Controller
     {
         $keywords = $request->input('keywords', null);
         $users = $this->userRepository->getMember($keywords);
+        $notActiveUsers = $this->userRepository->getNotActiveUsers(null, false);
 
-        return view('web.userManage', compact('users', 'keywords'));
+        return view('web.userManage', compact('users', 'keywords', 'notActiveUsers'));
     }
 
 
@@ -70,5 +71,31 @@ class UserController extends Controller
         }
 
         return back()->with('success', $user->name . ' 已受予權限。');
+    }
+
+    public function active(Request $request)
+    {
+        $keywords = $request->input('keywords', null);
+        $users = $this->userRepository->getNotActiveUsers($keywords);
+
+        return view('web.userActive', compact('users', 'keywords'));
+    }
+
+    public function activeOK(User $user)
+    {
+        if (! $user->update(['is_active' => true])) {
+            return back()->withErrors($user->name . ' 開通失敗。');
+        }
+
+        return back()->with('success', $user->name . ' 已開通。');
+    }
+
+    public function activeNO(User $user)
+    {
+        if (! $user->delete()) {
+            return back()->withErrors($user->name . ' 刪除失敗。');
+        }
+
+        return back()->with('success', $user->name . ' 已刪除。');
     }
 }

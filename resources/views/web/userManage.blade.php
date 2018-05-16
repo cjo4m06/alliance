@@ -1,12 +1,21 @@
 @extends('layout')
 
 @section('content')
-    <form action="{!! route('web.users.manage') !!}">
-        <div class="ui icon input">
-            <input type="text" name="keywords" value="{{ $keywords }}" placeholder="Search...">
-            <i class="search icon"></i>
+    <div class="ui form">
+        <div class="two fields">
+            <div class="field">
+                <form action="{!! route('web.users.manage') !!}">
+                    <div class="ui icon input">
+                        <input type="text" name="keywords" value="{{ $keywords }}" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
+                </form>
+            </div>
+            <div class="field">
+                <a href="{!! route('web.users.active') !!}" class="ui right floated teal button">前往開通（目前未開通帳戶 {{ $notActiveUsers->count() }} 筆）</a>
+            </div>
         </div>
-    </form>
+    </div>
     <div class="ui blue table form">
         <div class="ui segment">
             <div class="ui field">

@@ -44,4 +44,31 @@ class UserController extends Controller
 
         return back()->with('success', '密碼修改完成！');
     }
+
+    public function manage(Request $request)
+    {
+        $keywords = $request->input('keywords', null);
+        $users = $this->userRepository->getMember($keywords);
+
+        return view('web.userManage', compact('users', 'keywords'));
+    }
+
+
+    public function disableManage(User $user)
+    {
+        if (! $user->update(['is_manager' => false])) {
+            return back()->withErrors($user->name . ' 取消權限失敗。');
+        }
+
+        return back()->with('success', $user->name . ' 已取消權限。');
+    }
+
+    public function enableManage(User $user)
+    {
+        if (! $user->update(['is_manager' => true])) {
+            return back()->withErrors($user->name . ' 受予權限失敗。');
+        }
+
+        return back()->with('success', $user->name . ' 已受予權限。');
+    }
 }

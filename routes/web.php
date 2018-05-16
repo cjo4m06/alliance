@@ -45,6 +45,11 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'AuthController@logout',
     ]);
 
+    Route::get('users/manage', [
+        'as' => 'web.users.manage',
+        'uses' => 'UserController@manage',
+    ]);
+
     Route::put('user/{user}/password', [
         'as' => 'web.user.password',
         'uses' => 'UserController@password'
@@ -115,5 +120,15 @@ Route::group(['middleware' => ['auth', PermissionMiddleware::class]], function (
     Route::put('items/{item}', [
         'as' => 'web.items.update',
         'uses' => 'ItemController@update',
+    ]);
+
+    Route::put('users/manage/{user}/disable', [
+        'as' => 'web.users.manage.disable',
+        'uses' => 'UserController@disableManage',
+    ]);
+
+    Route::put('users/manage/{user}/enable', [
+        'as' => 'web.users.manage.enable',
+        'uses' => 'UserController@enableManage',
     ]);
 });

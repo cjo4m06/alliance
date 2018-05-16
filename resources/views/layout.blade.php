@@ -36,6 +36,9 @@
                     .pc-view {
                         display: none !important;
                     }
+                    tr.pc-view {
+                        display: none !important;
+                    }
                     .secondary.pointing.menu .item,
                     .secondary.pointing.menu .menu {
                         display: none;

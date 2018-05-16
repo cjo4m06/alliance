@@ -5,6 +5,10 @@
     <a href="{!! route('web.loots.index') !!}" class="item">分贓</a>
     <a href="{!! route('web.bosses.index') !!}" class="item">王團</a>
     <a href="{!! route('web.items') !!}" class="item">物品</a>
+    <a href="{!! route('web.users.manage') !!}" class="item">成員</a>
+    @if(Auth::user()->is_manager)
+
+    @endif
     <a href="{!! route('web.reports.index') !!}" class="item">回報</a>
 </div>
 
@@ -16,7 +20,7 @@
             </a>
         </div>
         <a href="{!! route('web.index') !!}" class="header item">
-            <img class="logo" src="img/logo.png">
+            <img class="logo" src="/img/logo.png">
             <span>Alliance</span>
         </a>
         <a href="{!! route('web.roles') !!}" class="item pc-view pc-view">角色</a>
@@ -24,6 +28,7 @@
         <a href="{!! route('web.loots.index') !!}" class="item pc-view">分贓</a>
         <a href="{!! route('web.bosses.index') !!}" class="item pc-view">王團</a>
         <a href="{!! route('web.items') !!}" class="item pc-view">物品</a>
+        <a href="{!! route('web.users.manage') !!}" class="item pc-view">成員</a>
         @if(Auth::user()->is_manager)
 
         @endif
